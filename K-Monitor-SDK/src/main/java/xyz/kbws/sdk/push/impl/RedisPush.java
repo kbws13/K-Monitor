@@ -50,7 +50,8 @@ public class RedisPush implements IPush {
     class Listener implements MessageListener<LogMessage>{
         @Override
         public void onMessage(CharSequence charSequence, LogMessage logMessage) {
-            logger.info("接收消息：{}", JSON.toJSONString(logMessage));
+            //logger.info("接收消息：{}", JSON.toJSONString(logMessage));
+            System.out.println("接收消息：" + JSON.toJSONString(logMessage));
         }
     }
 

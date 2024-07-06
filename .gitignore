@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 .idea/
+K-Monitor-Test/data
 target/
 # Log file
 *.log
