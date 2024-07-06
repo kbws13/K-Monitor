@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: K-Monitor-Admin
+  profiles:
+    active: dev
