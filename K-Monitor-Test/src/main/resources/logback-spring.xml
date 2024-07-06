@@ -102,15 +102,16 @@
         <logger name="com.nmys.view" level="debug"/>
     </springProfile>
 
-    <!--    <appender name="CUSTOM" class="xyz.kbws.sdk.appender.CustomAppender">-->
-    <!--        <systemName>monitor-test</systemName>-->
-    <!--        <groupId>xyz.kbws</groupId>-->
-    <!--        <host>127.0.0.1</host>-->
-    <!--        <port>16379</port>-->
-    <!--    </appender>-->
+    <appender name="CUSTOM" class="xyz.kbws.sdk.appender.CustomAppender">
+        <systemName>monitor-test</systemName>
+        <groupId>xyz.kbws</groupId>
+        <host>127.0.0.1</host>
+        <port>6379</port>
+    </appender>
 
     <root level="info">
-        <!--        <appender-ref ref="CUSTOM"/>-->
+
+        <appender-ref ref="CUSTOM"/>
 
         <appender-ref ref="CONSOLE"/>
         <!-- 异步日志-INFO -->

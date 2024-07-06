@@ -105,7 +105,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>plus.gaga.monitor.Application</mainClass>
+                    <mainClass>xyz.kbws.admin.MainApplication</mainClass>
                     <layout>JAR</layout>
                 </configuration>
             </plugin>
