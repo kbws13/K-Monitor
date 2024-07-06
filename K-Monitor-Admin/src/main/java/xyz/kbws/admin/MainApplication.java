@@ -1,4 +1,4 @@
-package xyz.kbws;
+package xyz.kbws.admin;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.SpringApplication;
