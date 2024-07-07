@@ -1,4 +1,4 @@
-package xyz.kbws.test;
+package xyz.kbws.admin;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
