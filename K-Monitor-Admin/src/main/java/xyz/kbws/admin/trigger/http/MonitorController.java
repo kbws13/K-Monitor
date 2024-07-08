@@ -1,13 +1,12 @@
 package xyz.kbws.admin.trigger.http;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xyz.kbws.admin.domain.model.entity.MonitorDataMapEntity;
+import xyz.kbws.admin.domain.model.valobj.MonitorTreeConfigVO;
 import xyz.kbws.admin.domain.service.ILogAnalyticalService;
 import xyz.kbws.admin.trigger.http.dto.MonitorDataMapDTO;
+import xyz.kbws.admin.trigger.http.dto.MonitorFlowDataDTO;
 import xyz.kbws.admin.types.Response;
 
 import javax.annotation.Resource;
@@ -52,4 +51,50 @@ public class MonitorController {
                     .build();
         }
     }
+
+    @GetMapping(value = "query_monitor_flow_map")
+    public Response<MonitorFlowDataDTO> queryMonitorFlowMap(@RequestParam String monitorId) {
+        try {
+            log.info("查询监控流数据 monitorId:{}", monitorId);
+            MonitorTreeConfigVO monitorTreeConfigVO = logAnalyticalService.queryMonitorFlowData(monitorId);
+            List<MonitorTreeConfigVO.Node> nodeList = monitorTreeConfigVO.getNodeList();
+            List<MonitorTreeConfigVO.Link> linkList = monitorTreeConfigVO.getLinkList();
+
+            List<MonitorFlowDataDTO.NodeData> nodeDataList = new ArrayList<>();
+            for (MonitorTreeConfigVO.Node node : nodeList) {
+                nodeDataList.add(new MonitorFlowDataDTO.NodeData(
+                        node.getMonitorNodeId(),
+                        node.getMonitorNodeId(),
+                        node.getMonitorNodeName(),
+                        node.getMonitorNodeValue(),
+                        node.getLoc(),
+                        node.getColor()));
+            }
+
+            List<MonitorFlowDataDTO.LinkData> linkDataList = new ArrayList<>();
+            for (MonitorTreeConfigVO.Link link : linkList) {
+                String linkValue = link.getLinkValue();
+                linkDataList.add("0".equals(linkValue) ?
+                        new MonitorFlowDataDTO.LinkData(link.getFromMonitorNodeId(), link.getToMonitorNodeId()) :
+                        new MonitorFlowDataDTO.LinkData(link.getFromMonitorNodeId(), link.getToMonitorNodeId(), link.getLinkKey(), linkValue));
+            }
+
+            MonitorFlowDataDTO monitorFlowDataDTO = new MonitorFlowDataDTO();
+            monitorFlowDataDTO.setNodeDataArray(nodeDataList);
+            monitorFlowDataDTO.setLinkDataArray(linkDataList);
+
+            // 返回结果
+            return Response.<MonitorFlowDataDTO>builder()
+                    .code("0000")
+                    .info("调用成功")
+                    .data(monitorFlowDataDTO).build();
+        } catch (Exception e) {
+            log.error("查询监控流数据失败 monitorId:{}", monitorId, e);
+            return Response.<MonitorFlowDataDTO>builder()
+                    .code("0001")
+                    .info("调用失败")
+                    .build();
+        }
+    }
+
 }

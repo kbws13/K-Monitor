@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import xyz.kbws.admin.domain.model.entity.MonitorDataEntity;
 import xyz.kbws.admin.domain.model.entity.MonitorDataMapEntity;
 import xyz.kbws.admin.domain.model.valobj.GatherNodeExpressionVO;
+import xyz.kbws.admin.domain.model.valobj.MonitorTreeConfigVO;
 import xyz.kbws.admin.domain.repository.IMonitorRepository;
 import xyz.kbws.admin.types.Constants;
 
@@ -78,5 +79,10 @@ public class ILogAnalyticalServiceImpl implements ILogAnalyticalService{
     @Override
     public List<MonitorDataMapEntity> queryMonitorDataMapEntityList() {
         return repository.queryMonitorDataMapEntityList();
+    }
+
+    @Override
+    public MonitorTreeConfigVO queryMonitorFlowData(String monitorId) {
+        return repository.queryMonitorFlowData(monitorId);
     }
 }
