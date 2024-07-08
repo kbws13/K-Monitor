@@ -2,6 +2,7 @@ package xyz.kbws.admin.domain.repository;
 
 import xyz.kbws.admin.domain.model.entity.MonitorDataEntity;
 import xyz.kbws.admin.domain.model.entity.MonitorDataMapEntity;
+import xyz.kbws.admin.domain.model.entity.MonitorFlowDesignerEntity;
 import xyz.kbws.admin.domain.model.valobj.GatherNodeExpressionVO;
 import xyz.kbws.admin.domain.model.valobj.MonitorTreeConfigVO;
 
@@ -25,5 +26,7 @@ public interface IMonitorRepository {
     MonitorTreeConfigVO queryMonitorFlowData(String monitorId);
 
     List<MonitorDataEntity> queryMonitorDataEntityList(MonitorDataEntity monitorDataEntity);
+
+    void updateMonitorFlowDesigner(MonitorFlowDesignerEntity monitorFlowDesignerEntity);
 
 }
