@@ -1,6 +1,7 @@
 package xyz.kbws.admin.domain.service;
 
 import ognl.OgnlException;
+import xyz.kbws.admin.domain.model.entity.MonitorDataEntity;
 import xyz.kbws.admin.domain.model.entity.MonitorDataMapEntity;
 import xyz.kbws.admin.domain.model.valobj.MonitorTreeConfigVO;
 
@@ -18,4 +19,6 @@ public interface ILogAnalyticalService {
     List<MonitorDataMapEntity> queryMonitorDataMapEntityList();
 
     MonitorTreeConfigVO queryMonitorFlowData(String monitorId);
+
+    List<MonitorDataEntity> queryMonitorDataEntityList(MonitorDataEntity monitorDataEntity);
 }
