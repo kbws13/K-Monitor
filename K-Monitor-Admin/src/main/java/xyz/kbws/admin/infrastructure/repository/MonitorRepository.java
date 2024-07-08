@@ -2,10 +2,12 @@ package xyz.kbws.admin.infrastructure.repository;
 
 import org.springframework.stereotype.Repository;
 import xyz.kbws.admin.domain.model.entity.MonitorDataEntity;
+import xyz.kbws.admin.domain.model.entity.MonitorDataMapEntity;
 import xyz.kbws.admin.domain.model.valobj.GatherNodeExpressionVO;
 import xyz.kbws.admin.domain.repository.IMonitorRepository;
 import xyz.kbws.admin.infrastructure.dao.*;
 import xyz.kbws.admin.infrastructure.po.MonitorData;
+import xyz.kbws.admin.infrastructure.po.MonitorDataMap;
 import xyz.kbws.admin.infrastructure.po.MonitorDataMapNode;
 import xyz.kbws.admin.infrastructure.po.MonitorDataMapNodeField;
 import xyz.kbws.admin.infrastructure.redis.IRedisService;
@@ -35,7 +37,7 @@ public class MonitorRepository implements IMonitorRepository {
     private IMonitorDataMapNodeLinkDao monitorDataMapNodeLinkDao;
 
     @Resource
-    private IRedisService redisService;
+    private IRedisService redissonService;
 
 
     @Override
@@ -101,7 +103,19 @@ public class MonitorRepository implements IMonitorRepository {
         monitorDataDao.insert(monitorDataReq);
 
         String cacheKey = Constants.RedisKey.monitor_node_data_count_key + monitorDataEntity.getMonitorId() + Constants.UNDERLINE + monitorDataEntity.getMonitorNodeId();
-        redisService.incr(cacheKey);
+        redissonService.incr(cacheKey);
+    }
 
+    @Override
+    public List<MonitorDataMapEntity> queryMonitorDataMapEntityList() {
+        List<MonitorDataMap> monitorDataList = monitorDataMapDao.queryMonitorDataMapEntityList();
+        List<MonitorDataMapEntity> monitorDataMapEntities = new ArrayList<>();
+        for (MonitorDataMap monitorDataMap : monitorDataList) {
+            monitorDataMapEntities.add(MonitorDataMapEntity.builder()
+                    .monitorId(monitorDataMap.getMonitorId())
+                    .monitorName(monitorDataMap.getMonitorName())
+                    .build());
+        }
+        return monitorDataMapEntities;
     }
 }

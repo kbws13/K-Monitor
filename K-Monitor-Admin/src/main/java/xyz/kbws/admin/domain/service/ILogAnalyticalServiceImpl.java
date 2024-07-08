@@ -6,6 +6,7 @@ import ognl.OgnlContext;
 import ognl.OgnlException;
 import org.springframework.stereotype.Service;
 import xyz.kbws.admin.domain.model.entity.MonitorDataEntity;
+import xyz.kbws.admin.domain.model.entity.MonitorDataMapEntity;
 import xyz.kbws.admin.domain.model.valobj.GatherNodeExpressionVO;
 import xyz.kbws.admin.domain.repository.IMonitorRepository;
 import xyz.kbws.admin.types.Constants;
@@ -72,5 +73,10 @@ public class ILogAnalyticalServiceImpl implements ILogAnalyticalService{
                 repository.saveMonitoryData(monitorDataEntity);
             }
         }
+    }
+
+    @Override
+    public List<MonitorDataMapEntity> queryMonitorDataMapEntityList() {
+        return repository.queryMonitorDataMapEntityList();
     }
 }

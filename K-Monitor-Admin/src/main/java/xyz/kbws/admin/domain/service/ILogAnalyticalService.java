@@ -1,6 +1,7 @@
 package xyz.kbws.admin.domain.service;
 
 import ognl.OgnlException;
+import xyz.kbws.admin.domain.model.entity.MonitorDataMapEntity;
 
 import java.util.List;
 
@@ -12,5 +13,7 @@ import java.util.List;
 public interface ILogAnalyticalService {
 
     void doAnalytical(String systemName, String clazzName, String methodName, List<String> logList) throws OgnlException;
+
+    List<MonitorDataMapEntity> queryMonitorDataMapEntityList();
 
 }

@@ -1,6 +1,9 @@
 package xyz.kbws.admin.infrastructure.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import xyz.kbws.admin.infrastructure.po.MonitorDataMap;
+
+import java.util.List;
 
 /**
  * @author kbws
@@ -11,5 +14,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IMonitorDataMapDao {
 
     String queryMonitorNameByMonitoryId(String monitorId);
+
+    List<MonitorDataMap> queryMonitorDataMapEntityList();
 
 }
