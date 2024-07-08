@@ -38,5 +38,12 @@
         limit 50
     </select>
 
+    <insert id="insert" parameterType="xyz.kbws.admin.infrastructure.po.MonitorData">
+        insert into monitor_data(monitor_id, monitor_name, monitor_node_id, system_name, clazz_name, method_name,
+                                 attribute_name, attribute_field, attribute_value, create_time, update_time)
+        values(#{monitorId},#{monitorName},#{monitorNodeId},#{systemName},#{clazzName},#{methodName},
+               #{attributeName},#{attributeField},#{attributeValue},now(),now())
+    </insert>
+
 
 </mapper>

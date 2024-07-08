@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xyz.kbws.admin.infrastructure.dao.IMonitorDataMapNodeDao">
 
-    <resultMap id="dataMap01" type="xyz.kbws.admin.infrastructure.po.MonitorDataMapNodeField">
+    <resultMap id="dataMap" type="xyz.kbws.admin.infrastructure.po.MonitorDataMapNodeField">
         <id column="id" property="id"/>
         <result column="monitor_id" property="monitorId"/>
         <result column="monitor_node_id" property="monitorNodeId"/>
@@ -16,6 +16,24 @@
         <result column="update_time" property="updateTime"/>
     </resultMap>
 
+    <select id="queryMonitoryDataMapNodeList" parameterType="xyz.kbws.admin.infrastructure.po.MonitorDataMapNode"
+            resultMap="dataMap">
+        select monitor_id, monitor_node_id, gather_system_name, gather_clazz_name, gather_method_name
+        from monitor_data_map_node
+        where gather_system_name = #{gatherSystemName} and gather_clazz_name = #{gatherClazzName} and gather_method_name
+            = #{gatherMethodName}
+    </select>
+
+    <select id="queryMonitorNodeConfigByMonitorId" parameterType="java.lang.String" resultMap="dataMap">
+        select monitor_node_id, monitor_node_name, loc, color
+        from monitor_data_map_node
+        where monitor_id = #{monitorId}
+    </select>
+
+    <update id="updateNodeConfig" parameterType="xyz.kbws.admin.infrastructure.po.MonitorDataMapNode">
+        update monitor_data_map_node set loc = #{loc}
+        where monitor_id = #{monitorId} and monitor_node_id = #{monitorNodeId}
+    </update>
 
 
 </mapper>

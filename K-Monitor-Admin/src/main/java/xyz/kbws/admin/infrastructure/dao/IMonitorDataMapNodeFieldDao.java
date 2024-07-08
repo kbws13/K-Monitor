@@ -1,6 +1,9 @@
 package xyz.kbws.admin.infrastructure.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import xyz.kbws.admin.infrastructure.po.MonitorDataMapNodeField;
+
+import java.util.List;
 
 /**
  * @author kbws
@@ -9,4 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface IMonitorDataMapNodeFieldDao {
+    List<MonitorDataMapNodeField> queryMonitorDataMapNodeList(MonitorDataMapNodeField monitorDataMapNodeFieldReq);
 }

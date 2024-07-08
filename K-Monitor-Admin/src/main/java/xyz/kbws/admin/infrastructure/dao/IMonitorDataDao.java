@@ -15,4 +15,6 @@ public interface IMonitorDataDao {
 
     List<MonitorData> queryMonitorDataList(MonitorData monitorDataReq);
 
+    void insert(MonitorData monitorDataReq);
+
 }
