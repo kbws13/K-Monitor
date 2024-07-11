@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xyz.kbws.admin.infrastructure.dao.IMonitorDataMapNodeDao">
 
-    <resultMap id="dataMap" type="xyz.kbws.admin.infrastructure.po.MonitorDataMapNodeField">
+    <resultMap id="dataMap" type="xyz.kbws.admin.infrastructure.po.MonitorDataMapNode">
         <id column="id" property="id"/>
         <result column="monitor_id" property="monitorId"/>
         <result column="monitor_node_id" property="monitorNodeId"/>
-        <result column="log_name" property="logName"/>
-        <result column="log_index" property="logIndex"/>
-        <result column="log_type" property="logType"/>
-        <result column="attribute_name" property="attributeName"/>
-        <result column="attribute_field" property="attributeField"/>
-        <result column="attribute_ognl" property="attributeOgnl"/>
+        <result column="monitor_node_name" property="monitorNodeName"/>
+        <result column="gather_system_name" property="gatherSystemName"/>
+        <result column="gather_clazz_name" property="gatherClazzName"/>
+        <result column="gather_method_name" property="gatherMethodName"/>
+        <result column="loc" property="loc"/>
+        <result column="color" property="color"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
     </resultMap>

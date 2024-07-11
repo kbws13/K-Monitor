@@ -139,7 +139,7 @@ public class MonitorController {
         }
     }
 
-    @GetMapping(value = "update_monitor_flow_designer")
+    @PostMapping(value = "update_monitor_flow_designer")
     public Response<Boolean> updateMonitorFlowDesigner(@RequestParam String monitorId, @RequestBody MonitorFlowDataDTO request) {
         try {
             log.info("更新监控图配置 monitorId:{}", monitorId);
